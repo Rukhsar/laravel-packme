@@ -1,0 +1,21 @@
+{
+    "name": "rukhsar/laravel-packme",
+    "description": "A laravel command to generate a laravel starting package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rukhsar Manzoor",
+            "email": "rukhsar.man@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.2",
+        "illuminate/console": "~5.2",
+        "illuminate/filesystem": "~5.2"
+    },
+    "autoload":{
+            "psr-4":{
+                "Rukhsar\\PackMe\\": "src"
+            }
+    }
+}
