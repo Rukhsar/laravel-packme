@@ -42,8 +42,10 @@ class PackMeCommand extends Command
      */
     public function handle()
     {
+        // Progressbar Setup
         $bar= $this->helper->progressBarSetup($this->output->createProgressBar(7));
 
+        // Start Progressbar
         $bar->start();
 
         // Command's common variables setup
@@ -61,9 +63,33 @@ class PackMeCommand extends Command
         $appConfigLine = 'App\Providers\RouteServiceProvider::class,
             ' . $cVendor . '\\' . $cName . '\\' . 'ServiceProvider::class,';
 
-        echo $appConfigLine;
-
+        // Start creating the package
         $this->info('Creating package '.$vendor.'\\'.$name.'...');
+
+        // Check if the package already exist with this name and vendor
+        if (!$this->option('force')) {
+            $this->helper->checkExistingPackage($path, $vendor, $name);
+        }
+
+        // Move the progressbar to show progress
+        $bar->advance();
+
+        // Creating package directory
+        $this->info('Creating package directory...');
+        $this->helper->makeDirectory($path);
+
+        // Move the progressbar to show progress
+        $bar->advance();
+
+        // Creating vendor directory
+        $this->info('Creating vendor...');
+        $this->helper->makeDirectory($path.$vendor);
+
+        // Move the progressbar to show progress
+        $bar->advance();
+
+        // Copying the skeleton package
+        $this->info('Creating skeleton package');
 
 
     }

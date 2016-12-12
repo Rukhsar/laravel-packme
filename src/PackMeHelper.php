@@ -36,5 +36,12 @@ class PackMeHelper
         }
     }
 
+    public function makeDirectory($path)
+    {
+        if(!is_dir($path))
+        {
+            return mkdir($path);
+        }
+    }
 
 }
