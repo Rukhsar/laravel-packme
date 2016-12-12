@@ -28,5 +28,13 @@ class PackMeHelper
         return $bar;
     }
 
+    public function checkExistingPackage($path, $vendor, $name)
+    {
+        if(is_dir($path.$vendor.'/'.$name))
+        {
+            throw new RuntimeException('Package already exist, choose a different name');
+        }
+    }
+
 
 }
