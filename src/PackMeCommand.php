@@ -3,6 +3,7 @@
 namespace Rukhsar\PackMe;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class PackMeCommand extends Command
 {
@@ -11,7 +12,7 @@ class PackMeCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'pack:me';
+    protected $signature = 'pack:me {vendor} {name} {--force}';
 
     /**
      * The console command description.
@@ -41,6 +42,10 @@ class PackMeCommand extends Command
      */
     public function handle()
     {
-        $this->helper->sayHello();
+        $bar= $this->helper->progressBarSetup($this->output->createProgressBar(7));
+
+        $bar->start();
+
+
     }
 }
