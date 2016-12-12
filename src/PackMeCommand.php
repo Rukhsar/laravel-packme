@@ -106,6 +106,25 @@ class PackMeCommand extends Command
         // Move the progressbar to show progress
         $bar->advance();
 
+        // Adding package to Composer.json
+        $this->info('Adding package to composer and app...');
+
+        $this->helper->replaceAndSave(getcwd() . '/composer.json', '"psr-4": {', $requirement);
+
+        //And add it to the providers array in config/app.php
+        $this->helper->replaceAndSave(getcwd() . '/config/app.php', 'App\Providers\RouteServiceProvider::class,',$appConfigLine);
+
+        // Move the progressbar to show progress
+        $bar->advance();
+
+        // Finished creating the package, end of the progress bar
+        $bar->finish();
+
+        $this->info('Package created successfully!');
+
+        $this->output->newLine(2);
+
+        $bar = null;
 
     }
 }
