@@ -44,4 +44,17 @@ class PackMeHelper
         }
     }
 
+    public function replaceAndSave($oldFile, $search, $replace, $newFile = null, $deleteOldFiles = false)
+    {
+        $newFile = ($newFile === null) ? $oldFile : $newFile ;
+
+        $file = $this->files->get($oldFile);
+
+        $replacing = str_replace($search, $replace, $file);
+
+        $this->files->put($newFile, $replacing);
+
+        if($deleteOldFiles)
+            $this->files->delete($oldFile);
+    }
 }

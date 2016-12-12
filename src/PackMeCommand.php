@@ -90,6 +90,21 @@ class PackMeCommand extends Command
 
         // Copying the skeleton package
         $this->info('Creating skeleton package');
+        File::copyDirectory(__DIR__.'/../skeletonPackage', $fullPath);
+
+        foreach (File::allFiles($fullPath) as $file)
+        {
+            $search = [':vendor_name',':VendorName',':package_name',':PackageName'];
+
+            $replace = [$vendor, $cVendor, $name, $cName];
+
+            $newFile = substr($file, 0, -5);
+
+            $this->helper->replaceAndSave($file, $search, $replace, $newFile, $deleteOldFiles = true);
+        }
+
+        // Move the progressbar to show progress
+        $bar->advance();
 
 
     }
