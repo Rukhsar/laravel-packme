@@ -25,9 +25,13 @@ class PackMeCommand extends Command
      *
      * @return void
      */
-    public function __construct()
+
+    protected $helper;
+
+    public function __construct(PackMeHelper $helper)
     {
         parent::__construct();
+        $this->helper = $helper;
     }
 
     /**
@@ -37,6 +41,6 @@ class PackMeCommand extends Command
      */
     public function handle()
     {
-        //
+        $this->helper->sayHello();
     }
 }
