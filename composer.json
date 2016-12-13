@@ -1,6 +1,6 @@
 {
     "name": "rukhsar/laravel-packme",
-    "description": "A laravel command to generate a laravel starting package",
+    "description": "A laravel command to generate a laravel starting package, it just provide a basic skeleton. It include a complete boilerplate code, just keep what you want remove the remaining.",
     "license": "MIT",
     "authors": [
         {
